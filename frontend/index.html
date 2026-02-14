@@ -1,0 +1,31 @@
+
+<body class="index-bg">
+<meta charset="UTF-8">
+<title>SJota - Login</title>
+<link rel="stylesheet" href="./style/style.css">
+<script src="api.js"></script>
+
+<div class="index-card">
+	<img src="./public/img/logo.jpeg" style="width: 120px; display: block; margin: 0 auto 20px;">
+	<input id="email" placeholder="Email">
+	<input id="password" type="password" placeholder="Senha">
+	<button onclick="login()">Entrar</button>
+</div>
+
+<script>
+async function login() {
+	const res = await fetch('/api/login', {
+		method: 'POST',
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify({
+			email: email.value,
+			password: password.value
+		})
+	});
+
+	const data = await res.json();
+	localStorage.setItem('token', data.token);
+	window.location = 'home.html';
+}
+</script>
+</body>

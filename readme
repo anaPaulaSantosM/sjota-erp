@@ -1,0 +1,52 @@
+## Visão geral do sistema
+
+Um mini ERP de vendas, com:
+
+## Funcionalidades
+
+Cadastro de Clientes
+Cadastro de Produtos (com estoque)
+Orçamento
+Pedido de Venda
+Conversão de Orçamento → Pedido
+Controle simples de status
+Atualização automática de estoque
+
+## Status do Pedido
+
+Negociação
+Produção → 🔥 aqui baixa o estoque
+Enviado
+Entregue
+
+## Arquitetura simples (e escalável)
+
+# Frontend
+HTML
+CSS
+JavaScript puro (fetch API)
+
+# Backend
+Node.js + Express
+API REST
+PostgreSQL
+
+## Arquitetura
+
+frontend/
+│
+├── css/
+│   └── style.css        (mobile-first)
+│
+├── js/
+│   ├── api.js           (fetch centralizado)
+│   ├── clientes.js
+│   ├── produtos.js
+│   ├── orcamentos.js
+│   └── pedidos.js
+│
+├── clientes.html
+├── produtos.html
+├── orcamentos.html
+├── pedidos.html
+

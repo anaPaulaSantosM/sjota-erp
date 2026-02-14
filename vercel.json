@@ -1,0 +1,12 @@
+// vercel.json para configurar API e build
+{
+  "version": 2,
+  "builds": [
+    { "src": "backend/index.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/backend/index.js" },
+    { "src": "/public/(.*)", "dest": "/frontend/public/$1" },
+    { "src": "/(.*)", "dest": "/frontend/$1" }
+  ]
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>SJota - Produtos</title>
+  <link rel="stylesheet" href="./style/style.css">
+  <script src="api.js"></script>
+  <script src="produtos.js" defer></script>
+</head>
+<body>
+
+  <div class="sidebar">
+    <a class="sidebar-btn" href="home.html">Home</a>
+    <a class="sidebar-btn" href="clientes.html">Clientes</a>
+    <a class="sidebar-btn" href="produtos.html">Produtos</a>
+    <a class="sidebar-btn" href="orcamentos.html">Orçamentos</a>
+    <a class="sidebar-btn" href="pedidos.html">Pedidos</a>
+        <!--<a class="sidebar-btn" href="relatorios.html">Relatórios</a>-->
+    <a class="sidebar-btn" href="index.html" onclick="logout()">Sair</a>
+  </div>
+
+  <div class="content">
+    <div class="card">
+      <h3>Novo Produto</h3>
+
+      <input id="nome" placeholder="Nome do produto" style="box-sizing: border-box; width: 100%;">
+      <input id="preco" type="number" placeholder="Preço" style="box-sizing: border-box; width: 100%;">
+      <input id="estoque" type="number" placeholder="Estoque inicial" style="box-sizing: border-box; width: 100%;">
+
+      <button onclick="salvarProduto()">Salvar</button>
+    </div>
+
+    <div class="card">
+      <h3>Produtos</h3>
+      <div style="margin-bottom: 8px;">
+        <div style="display: flex; align-items: center; gap: 16px; font-weight: bold;">
+          <span style="width: 60px; display: inline-block; text-align: center;">ID</span>
+          <span style="width: 120px; display: inline-block; text-align: center;">Nome</span>
+          <span style="width: 120px; display: inline-block; text-align: center;">Estoque</span>
+          <span style="width: 120px; display: inline-block; text-align: center;">Editar</span>
+          <span style="width: 120px; display: inline-block; text-align: center;">Excluir</span>
+        </div>
+      </div>
+      <ul id="listaProdutos"></ul>
+    </div>
+  </div>
+
+</body>
+</html>

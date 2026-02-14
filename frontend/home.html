@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>SJota - Home</title>
+  <link rel="stylesheet" href="./style/style.css">
+</head>
+<body class="home-bg">
+  <div class="sidebar">
+    <a class="sidebar-btn" href="home.html">Home</a>
+    <a class="sidebar-btn" href="clientes.html">Clientes</a>
+    <a class="sidebar-btn" href="produtos.html">Produtos</a>
+    <a class="sidebar-btn" href="orcamentos.html">Orçamentos</a>
+    <a class="sidebar-btn" href="pedidos.html">Pedidos</a>
+        <!--<a class="sidebar-btn" href="relatorios.html">Relatórios</a>-->
+    <a class="sidebar-btn" href="index.html" onclick="logout()">Sair</a>
+  </div>
+  <div class="content">
+    <div class="card">
+      <h3 id="boasvindas">Bem-vindo(a):</h3>
+      <script>
+        async function carregarUsuario() {
+          try {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+            const res = await fetch('/api/users/me', {
+              headers: { 'Authorization': token }
+            });
+            if (!res.ok) return;
+            const user = await res.json();
+            document.getElementById('boasvindas').innerText = `Bem-vindo(a), ${user.name}!`;
+          } catch (e) {}
+        }
+        carregarUsuario();
+      </script>
+    </div>
+  </div>
+</body>
+</html>

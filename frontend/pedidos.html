@@ -1,0 +1,74 @@
+    <!-- Popup de edição de pedido -->
+    <div id="editorPedido" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(31,41,55,0.5); z-index:2000; align-items:center; justify-content:center;">
+      <div style="background:#fff; border-radius:12px; max-width:500px; width:90vw; margin:auto; padding:32px 24px; box-shadow:0 4px 32px rgba(0,0,0,0.18); display:flex; flex-direction:column; gap:16px;">
+        <h3 id="editorTitulo" style="margin-top:0; color:#1f2937;">Editar Pedido</h3>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div><label>ID:</label> <span id="editorId"></span></div>
+          <div><label>Cliente:</label> <span id="editorCliente"></span></div>
+          <div><label>Produto:</label> <span id="editorProduto"></span></div>
+          <div>
+            <label>Status:</label><br>
+            <select id="editorStatus" style="width:100%;max-width:300px;">
+              <option value="Negociação">Negociação</option>
+              <option value="Produção">Produção</option>
+              <option value="Enviado">Enviado</option>
+              <option value="Entregue">Entregue</option>
+            </select>
+          </div>
+          <div>
+            <label>Quantidade:</label><br>
+            <input id="editorQuantidade" type="number" min="1" style="width:100%;max-width:120px;">
+          </div>
+          <div>
+            <label>Valor Total:</label><br>
+            <input id="editorValor" type="number" min="0" step="0.01" style="width:100%;max-width:120px;">
+          </div>
+        </div>
+        <div style="display:flex; gap:16px; justify-content:flex-end;">
+          <button onclick="fecharEditorPedido()" style="background:#eee;">Cancelar</button>
+          <button onclick="salvarEdicaoPedido()" style="background:#4caf50; color:#fff;">Salvar</button>
+        </div>
+      </div>
+    </div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>SJota - Pedidos</title>
+  <link rel="stylesheet" href="./style/style.css">
+  <script src="api.js"></script>
+  <script src="pedidos.js" defer></script>
+</head>
+<body>
+
+  <div class="sidebar">
+    <a class="sidebar-btn" href="home.html">Home</a>
+    <a class="sidebar-btn" href="clientes.html">Clientes</a>
+    <a class="sidebar-btn" href="produtos.html">Produtos</a>
+    <a class="sidebar-btn" href="orcamentos.html">Orçamentos</a>
+    <a class="sidebar-btn" href="pedidos.html">Pedidos</a>
+        <!--<a class="sidebar-btn" href="relatorios.html">Relatórios</a>-->
+    <a class="sidebar-btn" href="index.html" onclick="logout()">Sair</a>
+  </div>
+
+  <div class="content">
+    <div class="card">
+      <h3>Pedidos de Venda</h3>
+      <div style="margin-bottom: 8px;">
+        <div style="display: flex; align-items: center; gap: 16px; font-weight: bold;">
+          <span style="width: 60px; display: inline-block; text-align: center;">ID</span>
+          <span style="width: 180px; display: inline-block; text-align: center;">Cliente</span>
+          <span style="width: 120px; display: inline-block; text-align: center;">Produto</span>
+          <span style="width: 100px; display: inline-block; text-align: center;">Quantidade</span>
+          <span style="width: 120px; display: inline-block; text-align: center;">Valor Total</span>
+          <span style="width: 100px; display: inline-block; text-align: center;">Status</span>
+          <span style="width: 80px; display: inline-block; text-align: center;">Editar</span>
+          <span style="width: 80px; display: inline-block; text-align: center;">Excluir</span>
+        </div>
+      </div>
+      <ul id="listaPedidos"></ul>
+    </div>
+  </div>
+
+</body>
+</html>

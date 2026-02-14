@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="./style/style.css">
+<script src="./api.js"></script>
+
+<div class="card">
+  <h3>Login</h3>
+  <input id="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Senha">
+  <button onclick="login()">Entrar</button>
+</div>
+
+<script>
+async function login() {
+  const res = await fetch('/api/login', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      email: email.value,
+      password: password.value
+    })
+  });
+
+  const data = await res.json();
+  localStorage.setItem('token', data.token);
+  window.location = 'home.html';
+}
+</script>

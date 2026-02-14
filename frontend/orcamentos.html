@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SJota - Orçamentos</title>
+  <link rel="stylesheet" href="./style/style.css">
+  <script src="api.js"></script>
+  <script src="orcamentos.js" defer></script>
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <a class="sidebar-btn" href="home.html">Home</a>
+    <a class="sidebar-btn" href="clientes.html">Clientes</a>
+    <a class="sidebar-btn" href="produtos.html">Produtos</a>
+    <a class="sidebar-btn" href="orcamentos.html">Orçamentos</a>
+    <a class="sidebar-btn" href="pedidos.html">Pedidos</a>
+        <!--<a class="sidebar-btn" href="relatorios.html">Relatórios</a>-->
+    <a class="sidebar-btn" href="index.html" onclick="logout()">Sair</a>
+  </div>
+
+  <div class="content">
+    <div class="card">
+      <h3>Novo Orçamento</h3>
+      <label>Cliente</label>
+      <select id="cliente" style="box-sizing: border-box; width: 100%;"></select>
+      <label>Produto</label>
+      <select id="produto" onchange="produtoSelecionado()" style="box-sizing: border-box; width: 100%;"></select>
+      <label>Quantidade</label>
+      <input id="quantidade" type="number" oninput="calcularTotal()" style="box-sizing: border-box; width: 100%;">
+      <label>Valor Unitário</label>
+      <input id="precoUnitario" type="number" oninput="calcularTotal()" style="box-sizing: border-box; width: 100%;">
+      <label>Valor Total</label>
+      <input id="precoTotal" type="number" style="box-sizing: border-box; width: 100%;">
+
+      <button onclick="criarOrcamento()">Salvar Orçamento</button>
+    </div>
+
+    <div class="card">
+      <h3>Orçamentos</h3>
+      <div style="margin-bottom: 8px;">
+        <div style="display: flex; align-items: center; gap: 16px; font-weight: bold;">
+          <span style="width: 60px; display: inline-block; text-align: center;">ID</span>
+          <span style="width: 180px; display: inline-block; text-align: center;">Cliente</span>
+          <span style="width: 120px; display: inline-block; text-align: center;">Produto</span>
+          <span style="width: 100px; display: inline-block; text-align: center;">Quantidade</span>
+          <span style="width: 120px; display: inline-block; text-align: center;">Preço Total</span>
+          <span style="width: 80px; display: inline-block; text-align: center;">Editar</span>
+          <span style="width: 80px; display: inline-block; text-align: center;">Excluir</span>
+        </div>
+      </div>
+      <ul id="listaOrcamentos"></ul>
+      <!-- Modal para transformar orçamento em pedido -->
+      <div id="modalPedido"
+        style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(31,41,55,0.6); z-index:1000; align-items:center; justify-content:center;">
+        <div
+          style="background:#fff; border-radius:12px; max-width:400px; width:90vw; margin:auto; padding:32px 24px; box-shadow:0 4px 32px rgba(0,0,0,0.18); display:flex; flex-direction:column; gap:16px;">
+          <!--<h3 style="margin-top:0; color:#1f2937;">Transformar em Pedido</h3>-->
+          <label>Forma de Pagamento</label>
+            <select id="pedidoFormaPagamento" style="box-sizing:border-box; width:100%; padding:8px; border-radius:6px; border:1px solid #b0c4de; height:48px;"></select>
+          <div id="containerPrazo">
+            <label>Prazo (dias)</label>
+                <select id="pedidoPrazo" style="box-sizing:border-box; width:100%; padding:8px; border-radius:6px; border:1px solid #b0c4de; height:48px;">
+                  <option value="">Selecione...</option>
+                  <option value="30">30</option>
+                  <option value="30/60">30/60</option>
+                  <option value="30/60/90">30/60/90</option>
+                  <option value="30/60/90/120">30/60/90/120</option>
+                  <option value="30/60/90/120/150">30/60/90/120/150</option>
+                </select></div>
+          <div id="containerParcelas">
+            <label>Parcelas</label>
+                <select id="pedidoParcelas" style="box-sizing:border-box; width:100%; padding:8px; border-radius:6px; border:1px solid #b0c4de; height:48px;">
+                  <option value="">Selecione...</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select></div>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+            <button onclick="confirmarPedido()"
+              style="flex:1; background:#4caf50; color:#fff; border:none; border-radius:6px; padding:10px 0; font-size:16px; cursor:pointer;">Confirmar</button>
+            <button onclick="fecharModalPedido()"
+              style="flex:1; background:#b0c4de; color:#1f2937; border:none; border-radius:6px; padding:10px 0; font-size:16px; cursor:pointer;">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
