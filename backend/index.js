@@ -14,8 +14,7 @@ const salesOrderItemsRoutes = require('./routes/salesOrderItems');
 const app = express();
 app.use(cors());
 app.use(express.json());
-// Servir arquivos estáticos da pasta public antes do auth
-app.use('/public', express.static('frontend/public'));
+// ...
 
 app.post('/login', require('./controllers/login'));
 app.use('/users', userRoutes); // Cadastro de usuário sem auth
