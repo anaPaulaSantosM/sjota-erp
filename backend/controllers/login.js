@@ -1,8 +1,7 @@
 
+
 const pool = require('../db');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const SECRET = process.env.JWT_SECRET || 'mini-erp-secret';
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
@@ -14,6 +13,6 @@ module.exports = async (req, res) => {
   if (!valido) {
     return res.status(401).json({ error: 'Senha inválida' });
   }
-  const token = jwt.sign({ id: user.rows[0].id, email }, SECRET, { expiresIn: '8h' });
-  res.json({ token, name: user.rows[0].name });
+  // Retorna apenas o nome do usuário, sem token
+  res.json({ name: user.rows[0].name });
 };
