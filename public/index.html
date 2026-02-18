@@ -23,9 +23,14 @@ async function login() {
 		})
 	});
 
+	if (!res.ok) {
+		alert('Usuário ou senha inválidos!');
+		return;
+	}
+
 	const data = await res.json();
 	localStorage.setItem('token', data.token);
-	window.location = 'home.html';
+	window.location = "home.html";
 }
 </script>
 </body>

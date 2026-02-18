@@ -10,10 +10,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Todas as rotas de API delegam para o backend (mantendo compatibilidade)
 app.use('/api', backendApp);
 
-// Para qualquer outra rota, retorna o index.html (SPA) ou o arquivo correspondente
-// Rota catch-all para frontend (exceto /api)
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+
+// Fallback: se não encontrar arquivo estático, retorna index.html (SPA)
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  } else {
+    next();
+  }
 });
 
 module.exports = app;
