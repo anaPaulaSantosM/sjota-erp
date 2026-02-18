@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const backendApp = require('./backend/index');
+const backendApp = require('./api/index');
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', backendApp);
 
 // Para qualquer outra rota, retorna o index.html (SPA) ou o arquivo correspondente
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
