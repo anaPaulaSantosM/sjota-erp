@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const backendApp = require('./api/index');
+const backendApp = require('./backend/index');
 
 const app = express();
 
